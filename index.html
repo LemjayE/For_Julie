@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💖 For Julie</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 For Julie</title>
 
-  <!-- Cute font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+#response small {
+  display: block;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  opacity: 0.85;
+}
+
+#response a {
+  color: #ff3366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#response a:hover {
+  text-decoration: underline;
+}
+
+.calendar-btn {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #ff4d88;
+  color: white;
+  font-family: 'Baloo 2', cursive;
+}
 
 
-  <style>
-   
-  body {
+body {
   margin: 0;
   min-height: 100vh;
   display: flex;
@@ -22,153 +50,226 @@
   font-family: 'Dancing Script', cursive;
   text-align: center;
   overflow: hidden;
-
-  background: 
-  linear-gradient(rgba(255, 230, 240, 0.8), rgba(255, 230, 240, 0.8)),
-  url("https://i.imgur.com/J0kCkS3.png");
+  background:
+    linear-gradient(rgba(255,230,240,0.8), rgba(255,230,240,0.8)),
+    url("https://i.imgur.com/J0kCkS3.png");
   background-repeat: repeat, repeat;
   background-size: 950px 950px, 1000px 1000px;
-  background-position: 0 0, 50px 50px;
-}
-
-@keyframes drift {
-  from {
-    background-position: 0 0, 40px 40px;
-  }
-  to {
-    background-position: 200px 200px, 240px 240px;
-  }
-}
-
-body {
   animation: drift 30s linear infinite;
 }
 
-
-    /* Floating title */
-   h2 {
-  font-family: 'Baloo 2', cursive;  /* elegant cursive font */
-  font-size: 3rem;                      /* bigger so it balances the h1 */
-  font-weight: 900;                      /* bold enough to stand out */
-  color: #ff3366;                        /* keeps same pink-red theme */
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* subtle shadow for depth */
-  margin-bottom: 20px;
+@keyframes drift {
+  from { background-position: 0 0, 40px 40px; }
+  to { background-position: 200px 200px, 240px 240px; }
 }
 
+.container {
+  background: rgba(255,255,255,0.6);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
-    h1 {
-  font-size: 6rem;            /* already big, can increase slightly */
-  color: #ff0033;             /* deeper red for emphasis */
-  font-weight: 900;           /* extra bold */
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3); /* glowing shadow to stand out */
+h2 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 3rem;
+  color: #ff3366;
+}
+
+h1 {
+  font-size: 6rem;
+  color: #ff0033;
   animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
-  margin-bottom: 30px;
 }
 
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
-    @keyframes glow {
-  0%, 100% { text-shadow: 2px 2px 8px rgba(255,0,51,0.7); }
+@keyframes glow {
+  0%,100% { text-shadow: 2px 2px 8px rgba(255,0,51,0.7); }
   50% { text-shadow: 4px 4px 20px rgba(255,0,51,1); }
 }
 
-   button {
-        font-family: 'Baloo 2', cursive;
- 	font-size: 2rem;
- 	padding: 15px 40px;
-  	margin: 10px;
-  	border: none;
-  	border-radius: 20px;
-  	cursor: pointer;
-	}
+button {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2rem;
+  padding: 15px 40px;
+  margin: 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
 
+.yes {
+  background: #ff4d88;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
 
-    /* YES pulse */
-    .yes {
-      background-color: #ff4d88;
-      color: white;
-      animation: pulse 1.5s infinite;
-    }
+.no {
+  background: #ccc;
+  position: relative;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
 
-    .no {
-      background-color: #cccccc;
-      position: relative;
-    }
+#response {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2.2rem;
+  color: #ff3366;
+  margin-top: 30px;
+}
 
-    #response {
-font-family: 'Baloo 2', cursive;
-      font-size: 2.2rem;
-      color: #ff3366;
-      margin-top: 30px;
-    }
+/* Hearts */
+@keyframes fly {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
 
-    /* Mobile tweaks */
-    @media (max-width: 600px) {
-      h1 { font-size: 2.8rem; }
-      button { font-size: 1.8rem; }
-      #response { font-size: 2rem; }
-    }
+/* Flowers */
+.flower {
+  position: fixed;
+  top: -10vh;
+  font-size: 28px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
 
-    /* Heart animation */
-    @keyframes fly {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-100vh);
-        opacity: 0;
-      }
-    }
-  </style>
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Fireworks */
+.firework {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: explode 1s ease-out forwards;
+}
+.details {
+  font-size: 1.4rem;
+  display: block;
+  margin-top: 10px;
+}
+
+@keyframes explode {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(6); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2rem; }
+  button { font-size: 1.5rem; }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h2> MS. JULIE MARIE L. URETA </h2>
-    <h1> Will you be my Valentine? <br/>💕</h1>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_9c4a2c4f2c.mp3" type="audio/mpeg">
+</audio>
 
-    <button class="yes" onclick="yesClicked()">Yes 💖</button>
-    <button class="no">No</button>
+<div class="container">
+  <h2>ENGR. JULIE  MARIE  L.  URETA</h2>
+  <h1>Will you be my Valentine? 💕</h1>
 
-    <div id="response"></div>
-  </div>
+  <button class="yes" onclick="yesClicked()">Yes 💖</button>
+  <button class="no">No</button>
 
-  <script>
-    function yesClicked() {
-      document.getElementById("response").innerHTML =
-        "YAAAYYYY 🥰💘 I knew it!!!<br/>-Dinner is at Loboc Riverside Restaurant<br/>-February 14, 2025 at 7:00PM<br/>I will see you there!";
+  <div id="response"></div>
+</div>
 
-      for (let i = 0; i < 20; i++) {
-        const heart = document.createElement("div");
-        heart.innerHTML = "💖";
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.bottom = "0px";
-        heart.style.fontSize = "30px";
-        heart.style.animation = "fly 3s linear";
-        document.body.appendChild(heart);
+<script>
+function yesClicked() {
+  document.querySelector(".yes").remove();
+  document.querySelector(".no").remove();
 
-        setTimeout(() => heart.remove(), 3000);
-      }
-    }
+  document.getElementById("bgMusic").play();
 
-    // Runaway NO button
-    const noButton = document.querySelector(".no");
+  document.getElementById("response").innerHTML =
+  "YAAAYYYY 🥰💘 I knew it!!!<br>" +
+  "<small>" +
+  "Dinner: " +
+  "<a href='https://maps.app.goo.gl/6kVejQnDJpjpdZe79'>📍 Loboc Riverside Restaurant</a><br>" +
+  "February 14, 2025 — 7:00 PM<br>" +
+  "I WILL SEE YOU THERE <3<br>"+
+  "</small>" +
+  "<button class='calendar-btn' onclick='addToCalendar()'>Save the Date</button>";
 
-    noButton.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 150);
-      const y = Math.random() * (window.innerHeight - 100);
-      noButton.style.position = "absolute";
-      noButton.style.left = x + "px";
-      noButton.style.top = y + "px";
-    });
-  </script>
+
+function addToCalendar() {
+  const title = encodeURIComponent("Valentine's Dinner 💖");
+  const details = encodeURIComponent("Dinner at Loboc Riverside Restaurant");
+  const location = encodeURIComponent("Loboc Riverside Restaurant, Bohol");
+  
+  // Feb 14, 2025 — 7:00 PM to 9:00 PM (PH time UTC+8)
+  const start = "20250214T110000Z";
+  const end = "20250214T130000Z";
+
+  const url =
+    `https://www.google.com/calendar/render?action=TEMPLATE` +
+    `&text=${title}` +
+    `&details=${details}` +
+    `&location=${location}` +
+    `&dates=${start}/${end}`;
+
+  window.open(url, "_blank");
+}
+
+
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "0";
+    heart.style.fontSize = "30px";
+    heart.style.animation = "fly 3s linear";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+
+  for (let i = 0; i < 25; i++) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.innerHTML = "🌸";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 6000);
+  }
+
+  for (let i = 0; i < 15; i++) {
+    const firework = document.createElement("div");
+    firework.className = "firework";
+    firework.style.background = `hsl(${Math.random()*360},100%,60%)`;
+    firework.style.left = Math.random() * 100 + "vw";
+    firework.style.top = Math.random() * 60 + "vh";
+    document.body.appendChild(firework);
+    setTimeout(() => firework.remove(), 1000);
+  }
+}
+
+const noButton = document.querySelector(".no");
+function moveNoButton() {
+  const maxX = window.innerWidth - noButton.offsetWidth;
+  const maxY = window.innerHeight - noButton.offsetHeight;
+  noButton.style.position = "absolute";
+  noButton.style.left = Math.random() * maxX + "px";
+  noButton.style.top = Math.random() * maxY + "px";
+}
+noButton.addEventListener("mouseover", moveNoButton);
+noButton.addEventListener("touchstart", moveNoButton);
+</script>
 
 </body>
 </html>
