@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 For Julie</title>
+
+  <!-- Cute font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+
+
+  <style>
+   
+  body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  overflow: hidden;
+
+  background: 
+  linear-gradient(rgba(255, 230, 240, 0.8), rgba(255, 230, 240, 0.8)),
+  url("https://i.imgur.com/J0kCkS3.png");
+  background-repeat: repeat, repeat;
+  background-size: 950px 950px, 1000px 1000px;
+  background-position: 0 0, 50px 50px;
+}
+
+@keyframes drift {
+  from {
+    background-position: 0 0, 40px 40px;
+  }
+  to {
+    background-position: 200px 200px, 240px 240px;
+  }
+}
+
+body {
+  animation: drift 30s linear infinite;
+}
+
+
+    /* Floating title */
+   h2 {
+  font-family: 'Baloo 2', cursive;  /* elegant cursive font */
+  font-size: 3rem;                      /* bigger so it balances the h1 */
+  font-weight: 900;                      /* bold enough to stand out */
+  color: #ff3366;                        /* keeps same pink-red theme */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.2); /* subtle shadow for depth */
+  margin-bottom: 20px;
+}
+
+
+    h1 {
+  font-size: 6rem;            /* already big, can increase slightly */
+  color: #ff0033;             /* deeper red for emphasis */
+  font-weight: 900;           /* extra bold */
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3); /* glowing shadow to stand out */
+  animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+  margin-bottom: 30px;
+}
+
+
+    @keyframes glow {
+  0%, 100% { text-shadow: 2px 2px 8px rgba(255,0,51,0.7); }
+  50% { text-shadow: 4px 4px 20px rgba(255,0,51,1); }
+}
+
+   button {
+        font-family: 'Baloo 2', cursive;
+ 	font-size: 2rem;
+ 	padding: 15px 40px;
+  	margin: 10px;
+  	border: none;
+  	border-radius: 20px;
+  	cursor: pointer;
+	}
+
+
+    /* YES pulse */
+    .yes {
+      background-color: #ff4d88;
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .no {
+      background-color: #cccccc;
+      position: relative;
+    }
+
+    #response {
+font-family: 'Baloo 2', cursive;
+      font-size: 2.2rem;
+      color: #ff3366;
+      margin-top: 30px;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8rem; }
+      button { font-size: 1.8rem; }
+      #response { font-size: 2rem; }
+    }
+
+    /* Heart animation */
+    @keyframes fly {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2> MS. JULIE MARIE L. URETA </h2>
+    <h1> Will you be my Valentine? <br/>💕</h1>
+
+    <button class="yes" onclick="yesClicked()">Yes 💖</button>
+    <button class="no">No</button>
+
+    <div id="response"></div>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.getElementById("response").innerHTML =
+        "YAAAYYYY 🥰💘 I knew it!!!<br/>-Dinner is at Loboc Riverside Restaurant<br/>-February 14, 2025 at 7:00PM<br/>I will see you there!";
+
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0px";
+        heart.style.fontSize = "30px";
+        heart.style.animation = "fly 3s linear";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+      }
+    }
+
+    // Runaway NO button
+    const noButton = document.querySelector(".no");
+
+    noButton.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 150);
+      const y = Math.random() * (window.innerHeight - 100);
+      noButton.style.position = "absolute";
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    });
+  </script>
+
+</body>
+</html>
