@@ -8,9 +8,11 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
 <style>
-
 #response small {
   display: block;
   font-size: 1.3rem;
@@ -27,19 +29,6 @@
 #response a:hover {
   text-decoration: underline;
 }
-
-.calendar-btn {
-  margin-top: 15px;
-  font-size: 1.4rem;
-  padding: 10px 25px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background: #ff4d88;
-  color: white;
-  font-family: 'Baloo 2', cursive;
-}
-
 
 body {
   margin: 0;
@@ -71,8 +60,10 @@ body {
 }
 
 h2 {
-  font-family: 'Baloo 2', cursive;
-  font-size: 3rem;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
   color: #ff3366;
 }
 
@@ -93,23 +84,24 @@ h1 {
 }
 
 button {
-  font-family: 'Baloo 2', cursive;
-  font-size: 2rem;
+  font-family: "VT323", monospace;
+  font-size: 3rem;
   padding: 15px 40px;
-  margin: 10px;
+  margin: 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 100px;
   cursor: pointer;
 }
 
 .yes {
-  background: #ff4d88;
+  background: #ffafca;
   color: white;
   animation: pulse 1.5s infinite;
 }
 
 .no {
-  background: #ccc;
+  background: #b9b9b9;
+  color: white;
   position: relative;
 }
 
@@ -120,13 +112,21 @@ button {
 }
 
 #response {
-  font-family: 'Baloo 2', cursive;
-  font-size: 2.2rem;
+  font-family: "VT323", monospace;
+  font-size: 3rem;
   color: #ff3366;
   margin-top: 30px;
 }
 
 /* Hearts */
+.heart {
+  position: fixed;
+  font-size: 30px;
+  animation: fly 3s linear forwards;
+  pointer-events: none;
+  z-index: 1000;
+}
+
 @keyframes fly {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(-100vh); opacity: 0; }
@@ -139,6 +139,7 @@ button {
   font-size: 28px;
   animation: fall linear forwards;
   pointer-events: none;
+  z-index: 1000;
 }
 
 @keyframes fall {
@@ -152,7 +153,10 @@ button {
   height: 8px;
   border-radius: 50%;
   animation: explode 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 1000;
 }
+
 .details {
   font-size: 1.4rem;
   display: block;
@@ -180,64 +184,30 @@ button {
 
 <div class="container">
   <h2>ENGR. JULIE  MARIE  L.  URETA</h2>
-  <h1>Will you be my Valentine? 💕</h1>
+  <h1>Will you be my Valentine? <br/></h1>
 
-  <button class="yes" onclick="yesClicked()">Yes 💖</button>
-  <button class="no">No</button>
+  <button class="yes" onclick="yesClicked()">YES</button>
+  <button class="no">NO</button>
 
   <div id="response"></div>
 </div>
 
 <script>
-function yesClicked() {
-  document.querySelector(".yes").remove();
-  document.querySelector(".no").remove();
+let hasFirstClick = false;
 
-  document.getElementById("bgMusic").play();
-
-  document.getElementById("response").innerHTML =
-  "YAAAYYYY 🥰💘 I knew it!!!<br>" +
-  "<small>" +
-  "Dinner: " +
-  "<a href='https://maps.app.goo.gl/6kVejQnDJpjpdZe79'>📍 Loboc Riverside Restaurant</a><br>" +
-  "February 14, 2025 — 7:00 PM<br>" +
-  "I WILL SEE YOU THERE <3<br>"+
-  "</small>" +
-  "<button class='calendar-btn' onclick='addToCalendar()'>Save the Date</button>";
-
-
-function addToCalendar() {
-  const title = encodeURIComponent("Valentine's Dinner 💖");
-  const details = encodeURIComponent("Dinner at Loboc Riverside Restaurant");
-  const location = encodeURIComponent("Loboc Riverside Restaurant, Bohol");
-  
-  // Feb 14, 2025 — 7:00 PM to 9:00 PM (PH time UTC+8)
-  const start = "20250214T110000Z";
-  const end = "20250214T130000Z";
-
-  const url =
-    `https://www.google.com/calendar/render?action=TEMPLATE` +
-    `&text=${title}` +
-    `&details=${details}` +
-    `&location=${location}` +
-    `&dates=${start}/${end}`;
-
-  window.open(url, "_blank");
-}
-
-
+function createHearts() {
   for (let i = 0; i < 20; i++) {
     const heart = document.createElement("div");
+    heart.className = "heart";
     heart.innerHTML = "💖";
-    heart.style.position = "fixed";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.bottom = "0";
-    heart.style.fontSize = "30px";
-    heart.style.animation = "fly 3s linear";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 3000);
   }
+}
 
+function createFlowers() {
   for (let i = 0; i < 25; i++) {
     const flower = document.createElement("div");
     flower.className = "flower";
@@ -247,18 +217,51 @@ function addToCalendar() {
     document.body.appendChild(flower);
     setTimeout(() => flower.remove(), 6000);
   }
+}
 
+function createFireworks() {
   for (let i = 0; i < 15; i++) {
-    const firework = document.createElement("div");
-    firework.className = "firework";
-    firework.style.background = `hsl(${Math.random()*360},100%,60%)`;
-    firework.style.left = Math.random() * 100 + "vw";
-    firework.style.top = Math.random() * 60 + "vh";
-    document.body.appendChild(firework);
-    setTimeout(() => firework.remove(), 1000);
+    setTimeout(() => {
+      const firework = document.createElement("div");
+      firework.className = "firework";
+      firework.style.background = `hsl(${Math.random()*360},100%,60%)`;
+      firework.style.left = Math.random() * 100 + "vw";
+      firework.style.top = Math.random() * 60 + "vh";
+      document.body.appendChild(firework);
+      setTimeout(() => firework.remove(), 1000);
+    }, i * 50);
   }
 }
 
+function triggerCelebration() {
+  createHearts();
+  createFlowers();
+  createFireworks();
+}
+
+function yesClicked() {
+  // First click actions
+  if (!hasFirstClick) {
+    hasFirstClick = true;
+    document.querySelector(".no").remove();
+    document.getElementById("bgMusic").play();
+    
+    document.getElementById("response").innerHTML =
+    "YAAAYYYY <3 I knew it!!!<br>" +
+    "<small>" +
+    "Dinner will be at the --->" +
+    "<a href='https://maps.app.goo.gl/6kVejQnDJpjpdZe79'> Loboc Riverside Restaurant</a><br>" +
+    "February 14, 2026 — 7:00 PM<br>" +
+    "I WILL SEE YOU THERE <3<br>" +
+    `<small style="font-size: .9rem; margin-top: 10px;">(Keep clicking 'Yes' for more celebration)</br></br>Made with LOVE by Lemmmyy</small>` +
+      "</small>";
+  }
+  
+  // Trigger celebration effects every time
+  triggerCelebration();
+}
+
+// Make "No" button move on hover/touch
 const noButton = document.querySelector(".no");
 function moveNoButton() {
   const maxX = window.innerWidth - noButton.offsetWidth;
@@ -269,6 +272,13 @@ function moveNoButton() {
 }
 noButton.addEventListener("mouseover", moveNoButton);
 noButton.addEventListener("touchstart", moveNoButton);
+
+// Optional: Auto-trigger celebration once when page loads
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    createHearts();
+  }, 1000);
+});
 </script>
 
 </body>
